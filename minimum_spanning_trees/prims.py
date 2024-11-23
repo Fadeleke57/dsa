@@ -47,9 +47,6 @@ def prims(G, start='A'):
             for node in G[new_node]:
                 heapq.heappush(heap, node)
 
-    return MST, total_cost
-
-
 def main():
     G = make_graph()
     MST, total_cost = prims(G, 'A')
