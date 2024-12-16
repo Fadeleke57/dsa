@@ -28,12 +28,12 @@ def bfs(graph, node):
     while queue:
         # popleft is O(1). For an array, pop(0) is O(n). Hence the change to deque from array.
         s = queue.popleft()
+        visited.add(s)
         print(s, end = ' ')
 
         for n in graph[s]:
             # Because visited is a set, this lookup is O(1).
             if n not in visited:
-                visited.add(n)
                 queue.append(n)
 
 
