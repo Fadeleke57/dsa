@@ -30,21 +30,27 @@ def dijkstras(graph, start):
 
     return distances
 
-
 def dijkstras(graph, start):
-    distances = {
-        node: float("inf") for node in graph.keys()
-    } #can also have a parents map to reconstruct the path
+    # Initialize distances with infinity and set the start node distance to 0.
+    distances = {node: float("inf") for node in graph}
     distances[start] = 0
+
+    # Priority queue of (distance, node)
     q = [(0, start)]
+    
     while q:
         current_distance, node = heapq.heappop(q)
-        if current_distance < distances[node]:
-            distances[node] = current_distance
-            for neighbor, weight in graph[node].item():
-                if current_distance + weight < distances[neighbor]:
-                    distances[neighbor] = current_distance + weight
-                    heapq.heappush(q, (distances[neighbor], neighbor))
+        
+        # If the current distance is not up-to-date, skip processing.
+        if current_distance > distances[node]:
+            continue
+        
+        for neighbor, weight in graph[node].items():
+            new_distance = current_distance + weight
+            if new_distance < distances[neighbor]:
+                distances[neighbor] = new_distance
+                heapq.heappush(q, (new_distance, neighbor))
+                
     return distances
 
 # Example usage
