@@ -1,6 +1,5 @@
 from collections import deque
 
-
 graph = {
   'A' : ['B','C'],
   'B' : ['D', 'E', 'F'],
@@ -15,11 +14,7 @@ graph = {
 
 
 def bfs(graph, node):
-    # The video has visited as an array. I changed this to set because 'n not in visited' below is O(1) instead of O(n).
-    # See this link for more: https://wiki.python.org/moin/TimeComplexity.
     visited = set()
-    # The video has queue as an array. I changed this to deque because popping the first element is O(1) instead of O(n).
-    # See this link for more: https://wiki.python.org/moin/TimeComplexity.
     queue = deque()
 
     visited.add(node)
